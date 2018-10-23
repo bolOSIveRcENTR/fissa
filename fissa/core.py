@@ -497,7 +497,9 @@ class Experiment():
         M['ROIs'] = collections.OrderedDict()
         M['raw'] = collections.OrderedDict()
         M['result'] = collections.OrderedDict()
-
+        M['df_raw'] = collections.OrderedDict()
+        M['df_result'] = collections.OrderedDict()
+        
         # loop over cells and trial
         for cell in range(self.nCell):
             # get current cell label
@@ -506,6 +508,8 @@ class Experiment():
             M['ROIs'][c_lab] = collections.OrderedDict()
             M['raw'][c_lab] = collections.OrderedDict()
             M['result'][c_lab] = collections.OrderedDict()
+            M['df_raw'][c_lab] = collections.OrderedDict()
+            M['df_result'][c_lab] = collections.OrderedDict()           
             for trial in range(self.nTrials):
                 # get current trial label
                 t_lab = 'trial' + str(trial)
@@ -513,7 +517,8 @@ class Experiment():
                 M['ROIs'][c_lab][t_lab] = self.roi_polys[cell][trial]
                 M['raw'][c_lab][t_lab] = self.raw[cell][trial]
                 M['result'][c_lab][t_lab] = self.result[cell][trial]
-
+                M['df_raw'][c_lab][t_lab] = self.delatf_raw[cell][trial]
+                M['df_result'][c_lab][t_lab] = self.deltaf_result[cell][trial]
         savemat(fname, M)
 
 
